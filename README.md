@@ -211,6 +211,7 @@ To build and run the Docker container:
 ```bash
 ./software_project/run_container.sh <processors_number> <rows> <columns> <cx> <cy> <time_steps>
 ```
+Note: the values of `cx`and `cy` must be in the range [0.01-0.2]
 ## Quick view
 A quick view of the project is avalable on Google Colab:
 [colab notebook](https://colab.research.google.com/gist/venerd1/a3f3f3b93ed891189b86ebf5a02cd67a/software-project.ipynb)
