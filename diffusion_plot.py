@@ -2,8 +2,8 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 # Read data from 'initial.dat' and 'final.dat'
-initial_grid = np.loadtxt('output/initial.dat')
-final_grid = np.loadtxt('output/final.dat')
+initial_grid = np.loadtxt('heat_diffusion/initial.dat')
+final_grid = np.loadtxt('heat_diffusion/final.dat')
 
 # Find the minimum and maximum value between the two dataset for the colour scale
 vmin = min(initial_grid.min(), final_grid.min())
@@ -27,7 +27,7 @@ axs[1].set_ylabel('Y Axis')
 fig.colorbar(im2, ax=axs[1], label='Temperature')
 
 #save the figure
-fig.savefig("output/heat_diffusion_comparison.png", dpi=300)
+fig.savefig("heat_diffusion/heat_diffusion_comparison.png", dpi=300)
 
 # Show the figure
 plt.tight_layout()

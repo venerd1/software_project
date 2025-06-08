@@ -96,7 +96,7 @@ int main(int argc, char **argv) {
       printf("Task %i: Initializing grid and creating input file:\n", rank);
         u = allocate_matrix(rows, cols);
         inidat(rows, cols, u);
-        prtdat(rows, cols, u, "output/initial.dat");
+        prtdat(rows, cols, u, "heat_diffusion/initial.dat");
     }
 
 
@@ -109,7 +109,6 @@ int main(int argc, char **argv) {
 
     /*ITERATION FOR HEAT COMPUTATION- all tasks involved*/
     for (int t = 0; t < nts; t++) {
-      //printf("task %i Starting cycle %i...\n",rank,t);
       send_forwards(rank, numtasks, local_rows, cols, local_u1, prv_msg, flw_msg);
       send_backwards(rank, numtasks, local_rows, cols, local_u1, prv_msg, flw_msg);
       update(local_rows, cols, local_u1, local_u2, rank, numtasks, prv_msg, flw_msg, cx, cy);
@@ -130,7 +129,7 @@ int main(int argc, char **argv) {
     
     /*MASTER CREATES OUTPUT FILE*/
     if (rank == 0) {
-        prtdat(rows, cols, u, "output/final.dat");
+        prtdat(rows, cols, u, "heat_diffusion/final.dat");
         free(u);
     }
 

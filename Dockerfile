@@ -15,7 +15,7 @@ RUN pip3 install --no-cache-dir numpy matplotlib
 WORKDIR /software_project
 
 # Create output directory
-RUN mkdir -p /software_project/output
+RUN mkdir -p /software_project/heat_diffusion
 
 
 # Copy source files
@@ -32,11 +32,3 @@ RUN chmod +x entrypoint.sh
 # Set the entrypoint to the script that accepts arguments
 ENTRYPOINT ["./entrypoint.sh"]
 
-# Create a script to run both MPI program and Python script
-#RUN echo '#!/bin/bash\n\
-#mpirun --allow-run-as-root --oversubscribe -np 2 ./mpi_heat_diffusion 100 100 0.2 0.01 500\n\
-#python3 diffusion_plot.py' > start.sh && chmod +x start.sh
-
-
-# Run both MPI and Python script
-#CMD ["./start.sh"]

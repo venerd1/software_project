@@ -16,21 +16,17 @@ NTS="$6"
 
 SOFTWARE_PROJECT="software_project" #project directory
 IMAGE_NAME="heat_diffusion"         #container image
-OUTPUT_PATH="$HOME/output"  
+OUTPUT_PATH="$HOME/heat_diffusion"  
 
 
 #create the output directory in the home
 mkdir -p "$OUTPUT_PATH"
 
-# Navigate to the project directory
-#cd "$SOFTWARE_PROJECT" || { echo "Directory not found: $SOFTWARE_PROJECT"; exit 1; }
-
 # Build the Docker image
-#sudo docker build -t "$IMAGE_NAME" .
 echo "Building Docker image '$IMAGE_NAME'..."
 sudo docker build -t "$IMAGE_NAME" .
 
 # Run the Docker container with volume mapping
 echo "Running Docker container"
-sudo docker run -v "$OUTPUT_PATH":/software_project/output "$IMAGE_NAME" \
+sudo docker run -v "$OUTPUT_PATH":/software_project/heat_diffusion "$IMAGE_NAME" \
   "$PROCESSORS" "$ROWS" "$COLS" "$CX" "$CY" "$NTS"
