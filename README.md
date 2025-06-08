@@ -194,15 +194,17 @@ void update(float *u1, float *u2, float *prv_msg, float *flw_msg,
  
 # Parallel Heat Diffusion Simulation with Docker
 
-This project provides a `Dockerfile` that creates a container environment to compile and run the parallel heat diffusion simulation using MPI. It also includes a Python script to visualize the simulation results.  
-
-## Prerequisites
-
-Before creating the container, **create a folder called `output` in your home directory**. This is where the simulation results will be saved:
+This project provides a `Dockerfile` that creates a container environment to compile and run the parallel heat diffusion simulation using MPI. It also includes a Python script `diffusion_plot.py` to visualize the simulation results. The simulation results will be saved on the host system in a directory called `heat_diffusion` that will contain :
 
 - `initial.dat`
 - `final.dat`
 - `heat_diffusion_comparison.png`
+
+## Dockerfile
+
+`Dockerfile` sets up the environent to build a container for running a heat diffusion simulation using MPI (Message Passing Interface) and Python for plotting results.
+
+It starts from the official Ubuntu 20.04 image, installs MPI libraries for parallel computing, tools for compiling C code and Python libraries. It also creates a directory where simulation output may be stored. The container uses an `entrypoint.sh` script to execute the simulation, making it easy to run with customizable arguments.
 
 ## Build and Run
 
@@ -212,6 +214,9 @@ To build and run the Docker container:
 ./software_project/run_container.sh <processors_number> <rows> <columns> <cx> <cy> <time_steps>
 ```
 Note: the values of `cx`and `cy` must be in the range [0.01-0.2]
+
+The script `run_container.sh` first checks that six required arguments are provided, then creates an output directory on the host system. Next, it builds the Docker image and runs the container.
+
 ## Quick view
 A quick view of the project is avalable on Google Colab:
 [colab notebook](https://colab.research.google.com/gist/venerd1/a3f3f3b93ed891189b86ebf5a02cd67a/software-project.ipynb)
